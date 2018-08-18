@@ -19,6 +19,7 @@ export class TutorialGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<boolean> {
     const isComplete = await this.storage.get('tutorialComplete');
+
     if (!isComplete) {
       this.router.navigateByUrl('/tutorial');
     }
