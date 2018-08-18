@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TutorialGuard } from './tutorial.guard';
+import { TutorialGuard } from './guards/tutorial.guard';
 
 const routes: Routes = [
   {
@@ -8,7 +8,10 @@ const routes: Routes = [
     loadChildren: './tabs/tabs.module#TabsPageModule',
     canActivate: [TutorialGuard]
   },
-  { path: 'tutorial', loadChildren: './tutorial/tutorial.module#TutorialPageModule' }
+  {
+    path: 'tutorial',
+    loadChildren: './tutorial/tutorial.module#TutorialPageModule'
+  }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
