@@ -3,10 +3,21 @@
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
 @import "~@ionic/angular/css/colors.css";
-
 @import "~@ionic/angular/css/padding.css";
 @import "~@ionic/angular/css/float-elements.css";
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+body {
+    font-family: var(--body-font);
+    font-size: 20px;
+}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+ion-title {
+    font-family: var(--heading-font);
+}

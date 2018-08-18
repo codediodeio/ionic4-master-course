@@ -1,0 +1,27 @@
+<ion-slides pager="true">
+    <ion-slide class="step-one">
+        <ion-img src="/assets/slides/step1.svg"></ion-img>
+        <h1>Explore the Demo</h1>
+        <p>
+            The Ionic Master Course demo app explores the possibilites in Ionic 4.
+        </p>
+        <ion-button color="dark" (click)="next()">Next</ion-button>
+    </ion-slide>
+
+    <ion-slide class="step-two">
+        <ion-img src="/assets/slides/step2.svg"></ion-img>
+        <h1>Watch the Videos</h1>
+        <p>Each feature and concept is backed by a video tutorial and source code. </p>
+        <ion-button color="dark" (click)="next()">Next</ion-button>
+    </ion-slide>
+
+    <ion-slide class="step-three">
+        <ion-img src="/assets/slides/step3.svg"></ion-img>
+        <h1>Deploy your Own</h1>
+        <p>
+            Build and deploy your own app as a PWA or native app to Apple and Google Play
+        </p>
+
+        <ion-button (click)="finish()">Sounds Awesome!</ion-button>
+    </ion-slide>
+</ion-slides>
