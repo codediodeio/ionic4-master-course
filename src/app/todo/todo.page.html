@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>My Todo List</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+
+
+    <ion-segment (ionChange)="updateFilter($event.detail.value)">
+        <ion-segment-button value="" checked>
+            All
+        </ion-segment-button>
+        <ion-segment-button value="complete">
+            Complete
+        </ion-segment-button>
+        <ion-segment-button value="pending">
+            Pending
+        </ion-segment-button>
+
+
+    </ion-segment>
+
+    <ion-list>
+
+        <!-- <todo-item *ngFor="let todo of filtered | async" [todo]="todo">
+
+
+        </todo-item> -->
+
+        <ion-item *ngFor="let todo of filtered | async; trackBy: trackById">
+            <!-- <ion-item *virtualItem="let todo"> -->
+            <ion-label>
+                {{ todo.content }}
+            </ion-label>
+            <ion-icon (click)="updateStatus(todo.id, 'pending')" *ngIf="todo.status === 'complete'" slot="end" name="checkmark-circle-outline" color="success">
+            </ion-icon>
+
+
+            <ion-icon (click)="updateStatus(todo.id, 'complete')" *ngIf="todo.status === 'pending'" slot="end" name="alert" color="danger">
+            </ion-icon>
+        </ion-item>
+
+
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentModal()">
+        <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+
+
+</ion-content>

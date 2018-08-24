@@ -25,8 +25,10 @@
     "@ionic-native/status-bar": "5.0.0-beta.14",
     "@ionic/angular": "^4.0.0-beta.0",
     "@ionic/storage": "^2.1.3",
+    "angularfire2": "^5.0.0-rc.11",
     "cordova-sqlite-storage": "^2.4.0",
     "core-js": "^2.5.3",
+    "firebase": "^5.4.0",
     "rxjs": "6.2.2",
     "zone.js": "^0.8.26"
   },

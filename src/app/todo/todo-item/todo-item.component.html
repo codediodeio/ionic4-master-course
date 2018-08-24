@@ -1,0 +1,11 @@
+<ion-item>
+    <ion-label>
+        {{ todo.content }}
+    </ion-label>
+    <ion-icon (click)="updateStatus(todo.id, 'pending')" *ngIf="todo.status === 'complete'" slot="end" name="checkmark-circle-outline" color="success">
+    </ion-icon>
+
+
+    <ion-icon (click)="updateStatus(todo.id, 'complete')" *ngIf="todo.status === 'pending'" slot="end" name="alert" color="danger">
+    </ion-icon>
+</ion-item>

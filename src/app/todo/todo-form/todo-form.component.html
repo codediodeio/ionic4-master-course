@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Create a Todo</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <form [formGroup]="todoForm" (ngSubmit)="createTodo()">
+        <!-- <ion-input formControlName="content"></ion-input> -->
+
+        <!-- {{ todoForm.value | json }} -->
+        <ion-label>Todo Details</ion-label>
+        <ion-textarea formControlName="content" type="content" placeholder="your todo details" rows="2"></ion-textarea>
+
+        <ion-label>Status</ion-label>
+        <ion-list>
+            <ion-radio-group formControlName="status">
+
+                <ion-item>
+                    <ion-label>Pending</ion-label>
+                    <ion-radio slot="start" value="pending" checked></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Complete</ion-label>
+                    <ion-radio slot="start" value="complete"></ion-radio>
+                </ion-item>
+
+            </ion-radio-group>
+        </ion-list>
+        <!-- <ion-label>Status</ion-label>
+        <select formControlName="status" value="pending" ok-text="Okay" cancel-text="Dismiss">
+            <option value="pending">Pending</option>
+            <option value="complete">Complete</option>
+        </select> -->
+
+        <!-- <ion-label>Pending?</ion-label>
+        <ion-checkbox formControlName="content" color="primary" checked></ion-checkbox> -->
+
+        <ion-button [disabled]="todoForm.invalid" type="submit">Create!</ion-button>
+    </form>
+
+
+
+
+</ion-content>
