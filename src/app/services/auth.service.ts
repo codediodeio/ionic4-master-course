@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { DbService } from './db.service';
+import { HomePage } from '../home/home.page';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private db: DbService,
-    private router: Router
+    private router: Router,
+    private dl: Deeplinks
   ) {
     console.log('woke');
     this.user = this.afAuth.authState.pipe(
@@ -24,6 +26,7 @@ export class AuthService {
     );
 
     this.handleRedirect();
+
   }
 
   async googleLogin() {
