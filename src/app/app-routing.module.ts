@@ -8,11 +8,12 @@ const routes: Routes = [
     loadChildren: './tabs/tabs.module#TabsPageModule',
     canActivate: [TutorialGuard]
   },
+  { path: 'todo', loadChildren: './todo/todo.module#TodoPageModule' },
+
   {
     path: 'tutorial',
     loadChildren: './tutorial/tutorial.module#TutorialPageModule'
-  },
-  { path: 'todo', loadChildren: './todo/todo.module#TodoPageModule' }
+  }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
