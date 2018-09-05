@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { map } from 'rxjs/operators';
-import { TouchSequence } from 'selenium-webdriver';
 import { Observable } from 'rxjs';
 
 @Injectable({
