@@ -6,6 +6,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { DbService } from './db.service';
+import { Deeplinks } from '@ionic-native/deeplinks';
+import { HomePage } from '../home/home.page';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private db: DbService,
-    private router: Router
+    private router: Router,
+    private dl: Deeplinks
   ) {
     console.log('woke');
     this.user = this.afAuth.authState.pipe(
@@ -24,6 +27,23 @@ export class AuthService {
     );
 
     this.handleRedirect();
+
+    this.dl
+      .route({
+        '/__/auth/callback': HomePage
+      })
+      .subscribe(
+        match => {
+          // match.$route - the route we matched, which is the matched entry from the arguments to route()
+          // match.$args - the args passed in the link
+          // match.$link - the full link data
+          console.log('Successfully matched route', match);
+        },
+        nomatch => {
+          // nomatch.$link - the full link data
+          console.error('No match', nomatch);
+        }
+      );
   }
 
   async googleLogin() {

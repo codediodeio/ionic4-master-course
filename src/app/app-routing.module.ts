@@ -9,7 +9,6 @@ const routes: Routes = [
     canActivate: [TutorialGuard]
   },
   { path: 'todo', loadChildren: './todo/todo.module#TodoPageModule' },
-
   {
     path: 'tutorial',
     loadChildren: './tutorial/tutorial.module#TutorialPageModule'
