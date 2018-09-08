@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap, map, tap } from 'rxjs/operators';
 import { DbService } from '../services/db.service';
 
 import { ModalController } from '@ionic/angular';
 import { TodoFormComponent } from './todo-form/todo-form.component';
-
-import { VirtualScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-todo',

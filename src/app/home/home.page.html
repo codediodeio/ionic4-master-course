@@ -10,10 +10,7 @@
     <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
 
     <!-- <ion-button (click)="resetTutorial()">Reset</ion-button> -->
-
-    {{ auth.user | async | json }}
-    <ion-button color="secondary" (click)="auth.googleLogin()">Login</ion-button>
-    <ion-button color="warning" (click)="auth.signOut()">Logout</ion-button>
+    <app-login></app-login>
 
     <ion-button color="secondary" href="/todo">Lazy Route</ion-button>
 

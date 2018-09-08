@@ -1,0 +1,8 @@
+<ng-container *ngIf="auth.user | async; else login">
+    {{ auth.user | async | json }}
+    <ion-button color="warning" (click)="auth.signOut()">Logout</ion-button>
+</ng-container>
+
+<ng-template #login>
+    <ion-button color="secondary" (click)="auth.googleLogin()">Login</ion-button>
+</ng-template>
