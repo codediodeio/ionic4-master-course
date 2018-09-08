@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { auth } from "firebase/app";
+import { AngularFireAuth } from "@angular/fire/auth";
 
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { DbService } from './db.service';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { Platform } from '@ionic/angular';
+import { Observable, of } from "rxjs";
+import { switchMap } from "rxjs/operators";
+import { DbService } from "./db.service";
+import { GooglePlus } from "@ionic-native/google-plus/ngx";
+import { Platform } from "@ionic/angular";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
   user: Observable<any>;
@@ -22,7 +22,7 @@ export class AuthService {
     private gplus: GooglePlus,
     private platform: Platform
   ) {
-    console.log('woke');
+    console.log("woke");
     this.user = this.afAuth.authState.pipe(
       switchMap(user => (user ? db.doc$(`users/${user.uid}`) : of(null)))
     );
@@ -33,8 +33,10 @@ export class AuthService {
   async googleLogin() {
     try {
       let user;
-      if (this.platform.is('cordova')) {
+      if (this.platform.is("cordova")) {
+        console.log(1);
         user = await this.nativeGoogleLogin();
+        console.log(2, user);
       } else {
         const provider = new auth.GoogleAuthProvider();
         user = await this.afAuth.auth.signInWithRedirect(provider);
@@ -42,16 +44,16 @@ export class AuthService {
 
       return await this.updateUserData(user);
     } catch (err) {
-      console.log(err);
+      console.log(3, err);
     }
   }
 
   async nativeGoogleLogin(): Promise<any> {
     const gplusUser = await this.gplus.login({
       webClientId:
-        '1085404550227-h1iabv9megngs4eleo7kd5khoo4fkn98.apps.googleusercontent.com ',
+        "1085404550227-h1iabv9megngs4eleo7kd5khoo4fkn98.apps.googleusercontent.com",
       offline: true,
-      scopes: 'profile email'
+      scopes: "profile email"
     });
 
     return await this.afAuth.auth.signInWithCredential(
@@ -87,6 +89,6 @@ export class AuthService {
 
   async signOut() {
     await this.afAuth.auth.signOut();
-    return this.router.navigate(['/']);
+    return this.router.navigate(["/"]);
   }
 }

@@ -83,6 +83,9 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
     <plugin name="cordova-plugin-googleplus" spec="^5.3.1">
+        <variable name="WEB_APPLICATION_CLIENT_ID" value="1085404550227-h1iabv9megngs4eleo7kd5khoo4fkn98.apps.googleusercontent.com" />
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.1085404550227-0mrc1eels3bch1pvt2740nj7uqqakm10" />
     </plugin>
+    <allow-navigation href="http://192.168.0.15:8100" />
+    <engine name="ios" spec="~4.5.5" />
 </widget>
