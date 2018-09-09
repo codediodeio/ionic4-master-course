@@ -9,6 +9,7 @@ import { TabsPageRoutingModule } from './tabs.router.module';
 import { TabsPage } from './tabs.page';
 import { HomePageModule } from '../home/home.module';
 import { TodoPageModule } from '../todo/todo.module';
+import { PhotosPageModule } from '../photos/photos.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { TodoPageModule } from '../todo/todo.module';
     FormsModule,
     TabsPageRoutingModule,
     HomePageModule,
-    TodoPageModule
+    TodoPageModule,
+    PhotosPageModule
   ],
   declarations: [TabsPage]
 })

@@ -8,11 +8,16 @@ import { IonicModule } from '@ionic/angular';
 import { TodoPage } from './todo.page';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 
 const routes: Routes = [
   {
     path: '',
     component: TodoPage
+  },
+  {
+    path: 'todo/:id',
+    component: TodoDetailComponent
   }
 ];
 
@@ -24,7 +29,12 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule
   ],
-  declarations: [TodoPage, TodoItemComponent, TodoFormComponent],
+  declarations: [
+    TodoPage,
+    TodoItemComponent,
+    TodoFormComponent,
+    TodoDetailComponent
+  ],
   entryComponents: [TodoFormComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 import { HomePage } from '../home/home.page';
 import { TodoPage } from '../todo/todo.page';
+import { PhotosPage } from '../photos/photos.page';
 
 const routes: Routes = [
   {
@@ -21,9 +22,9 @@ const routes: Routes = [
         component: TodoPage
       },
       {
-        path: 'contact',
-        outlet: 'contact',
-        component: HomePage
+        path: 'photos',
+        outlet: 'photos',
+        component: PhotosPage
       }
     ]
   },

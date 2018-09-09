@@ -5,14 +5,31 @@
 </ion-header>
 
 <ion-content padding>
-    <h1>Hola</h1>
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+    <ion-item-divider>
+        <ion-label>
+            Intro App Tutorial
+        </ion-label>
+    </ion-item-divider>
 
-    <!-- <ion-button (click)="resetTutorial()">Reset</ion-button> -->
+
+    <ion-button color="tertiary" (click)="resetTutorial()">Restart Tutorial</ion-button>
+
+    <ion-item-divider>
+        <ion-label>
+            Login Component
+        </ion-label>
+    </ion-item-divider>
+
+
     <app-login></app-login>
 
-    <ion-button color="secondary" href="/todo">Lazy Route</ion-button>
+    <ion-item-divider>
+        <ion-label>
+            Capacitor Device Info
+        </ion-label>
+    </ion-item-divider>
+
+    <app-device></app-device>
 
 
 </ion-content>

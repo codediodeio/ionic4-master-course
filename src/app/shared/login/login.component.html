@@ -1,8 +1,18 @@
-<ng-container *ngIf="auth.user | async; else login">
-    {{ auth.user | async | json }}
+<ng-container *ngIf="auth.user$ | async as user; else login">
+    <app-profile [user]="user"></app-profile>
+
+
     <ion-button color="warning" (click)="auth.signOut()">Logout</ion-button>
 </ng-container>
 
+
 <ng-template #login>
-    <ion-button color="secondary" (click)="auth.googleLogin()">Login with Google</ion-button>
+    <ion-button color="primary" (click)="auth.googleLogin()">
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        Login with Google
+    </ion-button>
+    <ion-button color="dark" (click)="auth.anonymousLogin()">
+        <ion-icon slot="start" name="glasses"></ion-icon>
+        Login Anonymously
+    </ion-button>
 </ng-template>

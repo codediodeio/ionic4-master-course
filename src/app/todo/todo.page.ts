@@ -5,6 +5,7 @@ import { DbService } from '../services/db.service';
 
 import { ModalController } from '@ionic/angular';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-todo',
@@ -17,14 +18,22 @@ export class TodoPage implements OnInit {
 
   filter = new BehaviorSubject(null);
 
-  constructor(private db: DbService, public modal: ModalController) {}
+  constructor(
+    private db: DbService,
+    public modal: ModalController,
+    private auth: AuthService
+  ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     // this.todos = this.ref.valueChanges();
+
+    const uid = await this.auth.uid();
+
+    console.log(23, uid);
 
     this.todos = this.db.collection$('todos', ref =>
       ref
-        .where('user', '==', 'jeff')
+        .where('uid', '==', uid)
         .orderBy('createdAt', 'desc')
         .limit(25)
     );
@@ -36,19 +45,27 @@ export class TodoPage implements OnInit {
         );
       })
     );
+
+    this.todos.subscribe(console.log);
   }
 
   updateStatus(id, status) {
     this.db.updateAt(`todos/${id}`, { status });
   }
 
+  toggleStatus(todo) {
+    const status = todo.status === 'complete' ? 'pending' : 'complete';
+    this.db.updateAt(`todos/${todo.id}`, { status });
+  }
+
   updateFilter(val) {
     this.filter.next(val);
   }
 
-  async presentModal() {
+  async presentModal(todo?: any) {
     const modal = await this.modal.create({
-      component: TodoFormComponent
+      component: TodoFormComponent,
+      componentProps: { todo }
     });
     return await modal.present();
   }

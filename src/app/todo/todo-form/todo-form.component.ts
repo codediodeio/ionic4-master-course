@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { DbService } from '../../services/db.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -11,13 +12,19 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class TodoFormComponent implements OnInit {
   constructor(
     private db: DbService,
+    private auth: AuthService,
     public modal: ModalController,
-    private fb: FormBuilder
+    private fb: FormBuilder // private params: NavParams
   ) {}
 
   todoForm: FormGroup;
 
+  todo;
+
   ngOnInit() {
+    // this.params.get('todo');
+    console.log(this.todo);
+    // console.log(this.componentProps);
     this.todoForm = this.fb.group({
       content: [
         '',
@@ -31,11 +38,13 @@ export class TodoFormComponent implements OnInit {
     });
   }
 
-  createTodo() {
+  async createTodo() {
+    const uid = await this.auth.uid();
+    console.log(uid);
     this.db.updateAt('todos', {
       ...this.todoForm.value,
-      user: 'jeff',
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      uid
     });
 
     this.modal.dismiss();

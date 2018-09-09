@@ -1,0 +1,11 @@
+<ion-card>
+
+    <ion-card-content>
+
+        <div *ngFor="let d of device | async | keyvalue">
+            <strong>{{ d.key }}</strong>: {{ d.value }}
+        </div>
+
+    </ion-card-content>
+
+</ion-card>

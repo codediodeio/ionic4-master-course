@@ -7,8 +7,6 @@
 <ion-content padding>
 
 
-
-
     <ion-segment (ionChange)="updateFilter($event.detail.value)">
         <ion-segment-button value="" checked>
             All
@@ -33,14 +31,15 @@
         <ion-item *ngFor="let todo of filtered | async; trackBy: trackById">
             <!-- <ion-item *virtualItem="let todo"> -->
             <ion-label>
-                {{ todo.content }}
+                <span [class.complete]="todo.status === 'complete'">{{ todo.content }}</span>
             </ion-label>
-            <ion-icon (click)="updateStatus(todo.id, 'pending')" *ngIf="todo.status === 'complete'" slot="end" name="checkmark-circle-outline" color="success">
-            </ion-icon>
+
+            <ion-checkbox (click)="toggleStatus(todo)" [checked]="todo.status === 'complete'" color="success"></ion-checkbox>
 
 
-            <ion-icon (click)="updateStatus(todo.id, 'complete')" *ngIf="todo.status === 'pending'" slot="end" name="alert" color="danger">
-            </ion-icon>
+            <ion-button [href]="'todo/' + todo.id">
+                <ion-icon name="eye"></ion-icon>
+            </ion-button>
         </ion-item>
 
 
