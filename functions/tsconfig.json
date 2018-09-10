@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": ["es6"],
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "target": "es6",
+    "skipLibCheck": true,
+    "typeRoots": ["./functions/node_modules/@types"]
+  },
+  "compileOnSave": true,
+  "include": ["src"]
+}

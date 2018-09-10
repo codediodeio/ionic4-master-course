@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'tutorial',
     loadChildren: './tutorial/tutorial.module#TutorialPageModule'
   },
-  { path: 'photos', loadChildren: './photos/photos.module#PhotosPageModule' }
+  { path: 'fcm', loadChildren: './fcm/fcm.module#FcmPageModule' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
