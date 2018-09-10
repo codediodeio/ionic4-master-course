@@ -22,31 +22,37 @@ export class TodoFormComponent implements OnInit {
   todo;
 
   ngOnInit() {
-    // this.params.get('todo');
-    console.log(this.todo);
-    // console.log(this.componentProps);
+    console.log(1, this.todo);
+    const data = {
+      content: '',
+      status: 'pending',
+      ...this.todo
+    };
     this.todoForm = this.fb.group({
       content: [
-        '',
+        data.content,
         [
           Validators.required,
           Validators.minLength(1),
           Validators.maxLength(250)
         ]
       ],
-      status: ['pending', [Validators.required]]
+      status: [data.status, [Validators.required]]
     });
   }
 
   async createTodo() {
     const uid = await this.auth.uid();
-    console.log(uid);
-    this.db.updateAt('todos', {
-      ...this.todoForm.value,
+    const id = this.todo ? this.todo.id : '';
+    const data = {
+      uid,
       createdAt: Date.now(),
-      uid
-    });
+      ...this.todo,
+      ...this.todoForm.value
+    };
 
+    console.log(data);
+    this.db.updateAt(`todos/${id}`, data);
     this.modal.dismiss();
   }
 }

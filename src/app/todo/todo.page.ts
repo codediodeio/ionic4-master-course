@@ -19,9 +19,9 @@ export class TodoPage implements OnInit {
   filter = new BehaviorSubject(null);
 
   constructor(
-    private db: DbService,
+    public db: DbService,
     public modal: ModalController,
-    private auth: AuthService
+    public auth: AuthService
   ) {}
 
   async ngOnInit() {
@@ -45,8 +45,6 @@ export class TodoPage implements OnInit {
         );
       })
     );
-
-    this.todos.subscribe(console.log);
   }
 
   updateStatus(id, status) {
@@ -62,12 +60,16 @@ export class TodoPage implements OnInit {
     this.filter.next(val);
   }
 
-  async presentModal(todo?: any) {
+  async presentTodoForm(todo?: any) {
     const modal = await this.modal.create({
       component: TodoFormComponent,
       componentProps: { todo }
     });
     return await modal.present();
+  }
+
+  deleteTodo(todo) {
+    this.db.delete(`todos/${todo.id}`);
   }
 
   trackById(idx, todo) {

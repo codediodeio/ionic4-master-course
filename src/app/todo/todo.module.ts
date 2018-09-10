@@ -16,7 +16,7 @@ const routes: Routes = [
     component: TodoPage
   },
   {
-    path: 'todo/:id',
+    path: ':id',
     component: TodoDetailComponent
   }
 ];

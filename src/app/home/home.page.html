@@ -1,18 +1,22 @@
 <ion-header>
     <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button autoHide></ion-menu-button>
+        </ion-buttons>
+
         <ion-title>Home</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-item-divider>
+    <!-- <ion-item-divider>
         <ion-label>
             Intro App Tutorial
         </ion-label>
     </ion-item-divider>
 
 
-    <ion-button color="tertiary" (click)="resetTutorial()">Restart Tutorial</ion-button>
+    <ion-button color="tertiary" (click)="resetTutorial()">Restart Tutorial</ion-button> -->
 
     <ion-item-divider>
         <ion-label>
@@ -22,6 +26,18 @@
 
 
     <app-login></app-login>
+
+    <ion-item-divider>
+        <ion-label>
+            Todo List Demo
+        </ion-label>
+    </ion-item-divider>
+
+    <ion-button href="/todo" color="dark">
+        Firestore Todo List
+        <ion-icon slot="start" name="bonfire"></ion-icon>
+    </ion-button>
+
 
     <ion-item-divider>
         <ion-label>

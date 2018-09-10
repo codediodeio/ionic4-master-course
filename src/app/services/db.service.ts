@@ -42,12 +42,22 @@ export class DbService {
    * Creates or updates data on a collection or document.
    **/
   updateAt(path: string, data: Object): Promise<any> {
-    if (path.split('/').length % 2) {
+    const segments = path.split('/').filter(v => v);
+    if (segments.length % 2) {
       // Odd is always a collection
       return this.afs.collection(path).add(data);
     } else {
       // Even is always document
       return this.afs.doc(path).set(data, { merge: true });
     }
+  }
+
+  /**
+   * @param  {string} path path to document
+   *
+   * Deletes document from Firestore
+   **/
+  delete(path) {
+    return this.afs.doc(path).delete();
   }
 }

@@ -1,5 +1,9 @@
 <ion-header>
     <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button autoHide></ion-menu-button>
+        </ion-buttons>
+
         <ion-title>My Todo List</ion-title>
     </ion-toolbar>
 </ion-header>
@@ -23,13 +27,7 @@
 
     <ion-list>
 
-        <!-- <todo-item *ngFor="let todo of filtered | async" [todo]="todo">
-
-
-        </todo-item> -->
-
         <ion-item *ngFor="let todo of filtered | async; trackBy: trackById">
-            <!-- <ion-item *virtualItem="let todo"> -->
             <ion-label>
                 <span [class.complete]="todo.status === 'complete'">{{ todo.content }}</span>
             </ion-label>
@@ -40,12 +38,20 @@
             <ion-button [href]="'todo/' + todo.id">
                 <ion-icon name="eye"></ion-icon>
             </ion-button>
+
+            <ion-button (click)="presentTodoForm(todo)" color="tertiary">
+                <ion-icon name="create"></ion-icon>
+            </ion-button>
+
+            <ion-button (click)="deleteTodo(todo)" color="danger">
+                <ion-icon name="trash"></ion-icon>
+            </ion-button>
         </ion-item>
 
 
     </ion-list>
 
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentModal()">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentTodoForm()">
         <ion-fab-button>
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
