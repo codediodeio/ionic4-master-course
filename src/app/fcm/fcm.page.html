@@ -16,11 +16,15 @@
         </ion-card-header>
         <ion-card-content>
             <p>This page demonstrates topic-based push notifications using Firebase Cloud Messaging (FCM). When the app is opened, it will display the notification in the foreground. When closed, it will send the notification to the native device (or browser
-                via the service worker). First, we need to get permission to send.</p>
+                via the service worker). First, we need to get permission to send.
+            </p>
 
-            <p>{{ token || 'token missing' }}</p>
+            <p>
+                Token:
+                <ion-text color="secondary">{{ fcm.token }}</ion-text>
+            </p>
 
-            <ion-button (click)="getPermission()">Grant Permission</ion-button>
+            <ion-button>Grant Permission</ion-button>
         </ion-card-content>
     </ion-card>
 
@@ -29,9 +33,9 @@
             <ion-card-title>Subscribe to a Topic</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            <p>Second, we subscribe the user to <strong>discount</strong> notifications using Callable Firebase Cloud Functions</p>
+            <p>Second, subscribe the user to <strong>discount</strong> notifications using Callable Firebase Cloud Functions</p>
 
-            <ion-button (click)="sub('discounts')">Subscribe to Topic</ion-button>
+            <ion-button (click)="fcm.sub('discounts')">Subscribe to Topic</ion-button>
         </ion-card-content>
 
 
@@ -42,7 +46,7 @@
             <ion-card-title>Broadcast a Notification</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            <p>Second, we create a new random discount document in Firestore, triggering the notifcation to be broadcast to all subscribers to this topic. Give it up to 10 seconds to broadcast. Close the app to see it in the background.</p>
+            <p>Third, we create a new random discount document in Firestore, triggering the notifcation to be broadcast to all subscribers to this topic. Give it up to 10 seconds to broadcast. Close the app to see it in the background.</p>
             <ion-button (click)="randomDiscount()">Trigger Message</ion-button>
         </ion-card-content>
     </ion-card>
@@ -53,8 +57,8 @@
             <ion-card-title>Unsubscribe from a topic</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            <p>Third, give your user a way to unsubscribe from this topic.</p>
-            <ion-button (click)="unsub('discounts')">Unsubscribe from Topic</ion-button>
+            <p>Lastly, give your user a way to unsubscribe from this topic.</p>
+            <ion-button (click)="fcm.unsub('discounts')">Unsubscribe from Topic</ion-button>
         </ion-card-content>
     </ion-card>
 
