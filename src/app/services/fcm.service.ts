@@ -6,9 +6,6 @@ import { tap, switchMap } from 'rxjs/operators';
 
 // Fixing temporary bug in AngularFire
 import * as app from 'firebase';
-const _messaging = app.messaging();
-_messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
-_messaging.onMessage = _messaging.onMessage.bind(_messaging);
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +18,13 @@ export class FcmService {
     private fun: AngularFireFunctions,
     private toastController: ToastController
   ) {
-    this.getPermission()
-      .pipe(switchMap(token => this.showMessages()))
-      .subscribe();
+    // this.getPermission()
+    //   .pipe(switchMap(token => this.showMessages()))
+    //   .subscribe();
+
+    const _messaging = app.messaging();
+    _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
+    _messaging.onMessage = _messaging.onMessage.bind(_messaging);
   }
 
   async makeToast(message) {

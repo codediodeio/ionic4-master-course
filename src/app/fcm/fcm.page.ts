@@ -12,6 +12,10 @@ export class FcmPage implements OnInit {
 
   ngOnInit() {}
 
+  getPermission() {
+    this.fcm.getPermission().subscribe();
+  }
+
   randomDiscount() {
     const random = Math.round(Math.random() * 100);
 
