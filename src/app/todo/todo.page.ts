@@ -29,8 +29,6 @@ export class TodoPage implements OnInit {
 
     const uid = await this.auth.uid();
 
-    console.log(23, uid);
-
     this.todos = this.db.collection$('todos', ref =>
       ref
         .where('uid', '==', uid)

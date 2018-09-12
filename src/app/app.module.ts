@@ -18,6 +18,7 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Firebase } from '@ionic-native/firebase/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
     AngularFireMessagingModule
   ],
   providers: [
+    Firebase,
     GooglePlus,
     StatusBar,
     SplashScreen,

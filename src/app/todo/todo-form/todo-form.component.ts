@@ -22,7 +22,6 @@ export class TodoFormComponent implements OnInit {
   todo;
 
   ngOnInit() {
-    console.log(1, this.todo);
     const data = {
       content: '',
       status: 'pending',
@@ -51,7 +50,6 @@ export class TodoFormComponent implements OnInit {
       ...this.todoForm.value
     };
 
-    console.log(data);
     this.db.updateAt(`todos/${id}`, data);
     this.modal.dismiss();
   }

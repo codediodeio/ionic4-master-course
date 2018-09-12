@@ -87,5 +87,6 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.1085404550227-0mrc1eels3bch1pvt2740nj7uqqakm10" />
     </plugin>
     <allow-navigation href="http://192.168.0.15:8100" />
+    <plugin name="cordova-plugin-firebase" spec="^2.0.0" />
     <engine name="ios" spec="~4.5.5" />
 </widget>
