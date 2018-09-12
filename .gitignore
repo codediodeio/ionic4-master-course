@@ -1,5 +1,11 @@
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
+.firebase
+google-services.json
+GoogleService-Info.plist
+
+functions/node_modules
+functions/lib
 
 *~
 *.sw[mnpcod]
