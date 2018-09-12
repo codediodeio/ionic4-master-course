@@ -21,9 +21,6 @@
     "@angular/platform-browser": "~6.1.1",
     "@angular/platform-browser-dynamic": "~6.1.1",
     "@angular/router": "~6.1.1",
-    "@capacitor/android": "^1.0.0-beta.7",
-    "@capacitor/cli": "^1.0.0-beta.7",
-    "@capacitor/core": "^1.0.0-beta.7",
     "@ionic-native/core": "5.0.0-beta.15",
     "@ionic-native/firebase": "^5.0.0-beta.17",
     "@ionic-native/google-plus": "^5.0.0-beta.17",
@@ -31,6 +28,8 @@
     "@ionic-native/status-bar": "5.0.0-beta.15",
     "@ionic/angular": "^4.0.0-beta.8",
     "@ionic/storage": "^2.2.0",
+    "add": "2.0.6",
+    "cordova-android": "7.0.0",
     "cordova-ios": "4.5.5",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "^2.0.2",
@@ -41,6 +40,7 @@
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-sqlite-storage": "^2.4.0",
+    "cordova-support-google-services": "^1.2.1",
     "core-js": "^2.5.3",
     "firebase": "^5.4.2",
     "promise-polyfill": "^8.1.0",
@@ -95,10 +95,12 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-firebase": {}
+      "cordova-plugin-firebase": {},
+      "cordova-support-google-services": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

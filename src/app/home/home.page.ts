@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { Plugins } from '@capacitor/core';
-const { Device } = Plugins;
+// import { Plugins } from '@capacitor/core';
+// const { Device } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -9,6 +9,6 @@ const { Device } = Plugins;
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  device;
+  // device;
   constructor() {}
 }

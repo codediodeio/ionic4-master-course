@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'todo',
     loadChildren: './todo/todo.module#TodoPageModule',
-    canActivate: []
+    canActivate: [AuthGuard]
   },
   {
     path: 'tutorial',
