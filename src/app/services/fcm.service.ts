@@ -21,10 +21,11 @@ export class FcmService {
     // this.getPermission()
     //   .pipe(switchMap(token => this.showMessages()))
     //   .subscribe();
-
-    const _messaging = app.messaging();
-    _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
-    _messaging.onMessage = _messaging.onMessage.bind(_messaging);
+    try {
+      const _messaging = app.messaging();
+      _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
+      _messaging.onMessage = _messaging.onMessage.bind(_messaging);
+    } catch (e) {}
   }
 
   async makeToast(message) {

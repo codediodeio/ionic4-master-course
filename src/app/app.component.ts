@@ -42,4 +42,8 @@ export class AppComponent {
     await this.router.navigateByUrl('/tutorial');
     this.menu.close();
   }
+
+  closeMenu() {
+    this.menu.close();
+  }
 }

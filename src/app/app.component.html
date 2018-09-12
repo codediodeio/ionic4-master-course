@@ -10,17 +10,17 @@
         <!-- List of Text Items -->
         <ion-content>
             <ion-list>
-                <ion-item href="/">
+                <ion-item href="/" (click)="closeMenu()">
                     <ion-label>Home</ion-label>
                 </ion-item>
                 <ion-item (click)="resetTutorial()">
                     <ion-label>Intro Tutorial</ion-label>
                 </ion-item>
-                <ion-item href="/todo">
+                <ion-item href="/todo" (click)="closeMenu()">
                     <ion-label>Todo List</ion-label>
                 </ion-item>
 
-                <ion-item href="/fcm">
+                <ion-item href="/fcm" (click)="closeMenu()">
                     <ion-label>Push Notifications FCM</ion-label>
                 </ion-item>
                 <ion-item href="/" disabled>
