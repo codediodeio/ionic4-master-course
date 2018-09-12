@@ -41,11 +41,18 @@ export class FcmService {
   }
 
   getPermission() {
+    let token$;
     if (this.platform.is('cordova')) {
-      return from(this.getPermissionNative());
+      token$ = from(this.getPermissionNative());
     } else {
-      return this.getPermissionWeb();
+      token$ = this.getPermissionWeb();
     }
+    return token$.pipe(
+      tap(token => {
+        console.log(token);
+        this.token = token;
+      })
+    );
   }
 
   showMessages() {
@@ -57,9 +64,9 @@ export class FcmService {
     }
 
     return messages$.pipe(
-      tap(msg => {
-        const body: any = (msg as any).notification.body;
-        this.makeToast(body);
+      tap(payload => {
+        const msg = (payload as any).notification || payload;
+        this.makeToast(msg.body);
       })
     );
   }
@@ -79,29 +86,17 @@ export class FcmService {
   }
 
   private getPermissionWeb() {
-    return this.afMessaging.requestToken.pipe(
-      tap(token => (this.token = token))
-    );
+    return this.afMessaging.requestToken;
   }
 
-  private async getPermissionNative() {
+  async getPermissionNative() {
     let token;
 
-    if (this.platform.is('cordova')) {
-      const status = await this.firebaseNative.hasPermission();
-
-      if (status.isEnabled) {
-        console.log('already enabled');
-        return;
-      }
-
-      token = await this.firebaseNative.getToken();
-    }
+    token = await this.firebaseNative.getToken();
 
     if (this.platform.is('ios')) {
       await this.firebaseNative.grantPermission();
     }
-
     return token;
   }
 }
