@@ -30,3 +30,15 @@ Remove this line from one of them
 // ext.postBuildExtras = {
 // apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
 // }
+
+BUILD Android
+
+ionic cordova build android --prod --release
+
+keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk alias_name
+
+~/Library/Android/sdk/build-tools/28.0.2/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk IonFire-0-0-1.apk
+
+~/Library/Android/sdk/build-tools/28.0.2/apksigner verify IonFire-0-0-1.apk
