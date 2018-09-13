@@ -23,7 +23,7 @@ exports.sendOnFirestoreCreate = functions.firestore
     .onCreate((snapshot) => __awaiter(this, void 0, void 0, function* () {
     const discount = snapshot.data();
     const notification = {
-        title: 'New Discount Available!',
+        title: 'Hello from Ionic4 + Firebase',
         body: discount.headline
     };
     const payload = {
@@ -39,7 +39,7 @@ exports.sendOnFirestoreCreate = functions.firestore
                     },
                     {
                         action: 'dislike',
-                        title: ':☹ Boooo!'
+                        title: '☹ Boooo!'
                     }
                 ]
             }

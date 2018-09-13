@@ -2,6 +2,12 @@
 
 Enroll in the Course
 
+ionic cordova plugin add ionic-plugin-deeplinks --variable URL_SCHEME=ionic4-fire --variable DEEPLINK_SCHEME=https --variable DEEPLINK_HOST=ionic4-fire.firebaseapp.com --variable ANDROID_PATH_PREFIX=/
+
+functions TSConfig
+
+"skipLibCheck": true
+
 npm install --save @ionic-native/firebase@beta
 
 ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.1085404550227-0mrc1eels3bch1pvt2740nj7uqqakm10

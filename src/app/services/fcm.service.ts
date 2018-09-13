@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { ToastController, Platform } from '@ionic/angular';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 // Fixing temporary bug in AngularFire
 import * as app from 'firebase';
@@ -49,7 +49,6 @@ export class FcmService {
     }
     return token$.pipe(
       tap(token => {
-        console.log(token);
         this.token = token;
       })
     );

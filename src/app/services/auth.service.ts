@@ -32,7 +32,9 @@ export class AuthService {
       switchMap(user => (user ? db.doc$(`users/${user.uid}`) : of(null)))
     );
 
-    this.handleRedirect();
+    if (platform.is('pwa')) {
+      this.handleRedirect();
+    }
   }
 
   uid() {
@@ -47,6 +49,37 @@ export class AuthService {
   async anonymousLogin() {
     const credential = await this.afAuth.auth.signInAnonymously();
     return await this.updateUserData(credential.user);
+  }
+
+  private updateUserData({ uid, email, displayName, photoURL, isAnonymous }) {
+    // Sets user data to firestore on login
+
+    const path = `users/${uid}`;
+
+    const data = {
+      uid,
+      email,
+      displayName,
+      photoURL,
+      isAnonymous
+    };
+
+    return this.db.updateAt(path, data);
+  }
+
+  async signOut() {
+    await this.afAuth.auth.signOut();
+    return this.router.navigate(['/']);
+  }
+
+  //// GOOGLE AUTH
+
+  setRedirect(val) {
+    this.storage.set('authRedirect', val);
+  }
+
+  async isRedirect() {
+    return await this.storage.get('authRedirect');
   }
 
   async googleLogin() {
@@ -99,34 +132,5 @@ export class AuthService {
     await this.setRedirect(false);
 
     return result;
-  }
-
-  private updateUserData({ uid, email, displayName, photoURL, isAnonymous }) {
-    // Sets user data to firestore on login
-
-    const path = `users/${uid}`;
-
-    const data = {
-      uid,
-      email,
-      displayName,
-      photoURL,
-      isAnonymous
-    };
-
-    return this.db.updateAt(path, data);
-  }
-
-  async signOut() {
-    await this.afAuth.auth.signOut();
-    return this.router.navigate(['/']);
-  }
-
-  setRedirect(val) {
-    this.storage.set('authRedirect', val);
-  }
-
-  async isRedirect() {
-    return await this.storage.get('authRedirect');
   }
 }

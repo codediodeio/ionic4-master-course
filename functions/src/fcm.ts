@@ -23,7 +23,7 @@ export const sendOnFirestoreCreate = functions.firestore
     const discount = snapshot.data();
 
     const notification: admin.messaging.Notification = {
-      title: 'New Discount Available!',
+      title: 'Hello from Ionic4 + Firebase',
       body: discount.headline
     };
 
@@ -40,7 +40,7 @@ export const sendOnFirestoreCreate = functions.firestore
             },
             {
               action: 'dislike',
-              title: ':☹ Boooo!'
+              title: '☹ Boooo!'
             }
           ]
         }

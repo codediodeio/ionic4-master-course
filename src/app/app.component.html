@@ -1,6 +1,6 @@
 <ion-app>
 
-    <ion-menu side="start" type="push">
+    <ion-menu side="start" type="push" #mymenu>
         <ion-header>
             <ion-toolbar color="dark">
                 <ion-title>Menu</ion-title>
@@ -10,7 +10,7 @@
         <!-- List of Text Items -->
         <ion-content>
             <ion-list>
-                <ion-item href="/" (click)="closeMenu()">
+                <ion-item href="/" (click)="mymenu.close()">
                     <ion-label>Home</ion-label>
                 </ion-item>
                 <ion-item (click)="resetTutorial()">
