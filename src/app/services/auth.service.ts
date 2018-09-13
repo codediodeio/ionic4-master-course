@@ -100,19 +100,6 @@ export class AuthService {
     }
   }
 
-  async nativeGoogleLogin(): Promise<any> {
-    const gplusUser = await this.gplus.login({
-      webClientId:
-        '1085404550227-h1iabv9megngs4eleo7kd5khoo4fkn98.apps.googleusercontent.com',
-      offline: true,
-      scopes: 'profile email'
-    });
-
-    return await this.afAuth.auth.signInWithCredential(
-      auth.GoogleAuthProvider.credential(gplusUser.idToken)
-    );
-  }
-
   // Handle login with redirect for web Google auth
   private async handleRedirect() {
     if ((await this.isRedirect()) !== true) {
@@ -132,5 +119,18 @@ export class AuthService {
     await this.setRedirect(false);
 
     return result;
+  }
+
+  async nativeGoogleLogin(): Promise<any> {
+    const gplusUser = await this.gplus.login({
+      webClientId:
+        '1085404550227-h1iabv9megngs4eleo7kd5khoo4fkn98.apps.googleusercontent.com',
+      offline: true,
+      scopes: 'profile email'
+    });
+
+    return await this.afAuth.auth.signInWithCredential(
+      auth.GoogleAuthProvider.credential(gplusUser.idToken)
+    );
   }
 }
