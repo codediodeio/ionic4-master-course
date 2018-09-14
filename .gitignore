@@ -6,6 +6,8 @@ GoogleService-Info.plist
 
 functions/node_modules
 functions/lib
+IonFire-0-0-1.apk
+my-release-key.keystore
 
 *~
 *.sw[mnpcod]
