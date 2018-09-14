@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { switchMap, map, tap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { DbService } from '../services/db.service';
+import { AuthService } from '../services/auth.service';
 
 import { ModalController } from '@ionic/angular';
 import { TodoFormComponent } from './todo-form/todo-form.component';
-import { AuthService } from '../services/auth.service';
+import { Observable } from 'rx';
 
 @Component({
   selector: 'app-todo',
@@ -25,8 +26,6 @@ export class TodoPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    // this.todos = this.ref.valueChanges();
-
     const uid = await this.auth.uid();
 
     this.todos = this.db.collection$('todos', ref =>
@@ -39,14 +38,18 @@ export class TodoPage implements OnInit {
     this.filtered = this.filter.pipe(
       switchMap(filter => {
         return this.todos.pipe(
-          map(arr => filterByStatus(arr as any[], filter))
+          map(arr =>
+            (arr as any[]).filter(
+              obj => (status ? obj.status === status : true)
+            )
+          )
         );
       })
     );
   }
 
-  updateStatus(id, status) {
-    this.db.updateAt(`todos/${id}`, { status });
+  deleteTodo(todo) {
+    this.db.delete(`todos/${todo.id}`);
   }
 
   toggleStatus(todo) {
@@ -66,14 +69,7 @@ export class TodoPage implements OnInit {
     return await modal.present();
   }
 
-  deleteTodo(todo) {
-    this.db.delete(`todos/${todo.id}`);
-  }
-
   trackById(idx, todo) {
     return todo.id;
   }
 }
-
-const filterByStatus = (arr: any[], status: string) =>
-  arr.filter(obj => (status ? obj.status === status : true));
