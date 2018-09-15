@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, shareReplay } from 'rxjs/operators';
 import { DbService } from '../services/db.service';
 import { AuthService } from '../services/auth.service';
 
@@ -25,18 +25,21 @@ export class TodoPage implements OnInit {
     public auth: AuthService
   ) {}
 
-  async ngOnInit() {
-    const uid = await this.auth.uid();
-
-    this.todos = this.db.collection$('todos', ref =>
-      ref
-        .where('uid', '==', uid)
-        .orderBy('createdAt', 'desc')
-        .limit(25)
+  ngOnInit() {
+    this.todos = this.auth.user$.pipe(
+      switchMap(user =>
+        this.db.collection$('todos', ref =>
+          ref
+            .where('uid', '==', user.uid)
+            .orderBy('createdAt', 'desc')
+            .limit(25)
+        )
+      ),
+      shareReplay(1)
     );
 
     this.filtered = this.filter.pipe(
-      switchMap(filter => {
+      switchMap(status => {
         return this.todos.pipe(
           map(arr =>
             (arr as any[]).filter(
