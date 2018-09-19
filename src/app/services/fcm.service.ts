@@ -54,6 +54,22 @@ export class FcmService {
     );
   }
 
+  private getPermissionWeb() {
+    return this.afMessaging.requestToken;
+  }
+
+  private async getPermissionNative() {
+    let token;
+
+    if (this.platform.is('ios')) {
+      await this.firebaseNative.grantPermission();
+    }
+
+    token = await this.firebaseNative.getToken();
+
+    return token;
+  }
+
   listenToMessages() {
     let messages$;
     if (this.platform.is('cordova')) {
@@ -63,6 +79,17 @@ export class FcmService {
     }
 
     return messages$.pipe(tap(v => this.showMessages(v)));
+  }
+
+  private showMessages(payload) {
+    let body;
+    if (this.platform.is('android')) {
+      body = payload.body;
+    } else {
+      body = payload.notification.body;
+    }
+
+    this.makeToast(body);
   }
 
   sub(topic) {
@@ -77,32 +104,5 @@ export class FcmService {
       .httpsCallable('unsubscribeFromTopic')({ topic, token: this.token })
       .pipe(tap(_ => this.makeToast(`unsubscribed from ${topic}`)))
       .subscribe();
-  }
-
-  private showMessages(payload) {
-    console.log(payload);
-    let body;
-    if (this.platform.is('android')) {
-      body = payload.body;
-    } else {
-      body = payload.notification.body;
-    }
-
-    this.makeToast(body);
-  }
-
-  private getPermissionWeb() {
-    return this.afMessaging.requestToken;
-  }
-
-  async getPermissionNative() {
-    let token;
-
-    token = await this.firebaseNative.getToken();
-
-    if (this.platform.is('ios')) {
-      await this.firebaseNative.grantPermission();
-    }
-    return token;
   }
 }
