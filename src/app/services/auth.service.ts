@@ -32,9 +32,7 @@ export class AuthService {
       switchMap(user => (user ? db.doc$(`users/${user.uid}`) : of(null)))
     );
 
-    if (platform.is('pwa')) {
-      this.handleRedirect();
-    }
+    this.handleRedirect();
   }
 
   uid() {

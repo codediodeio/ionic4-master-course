@@ -54,7 +54,7 @@ export class FcmService {
     );
   }
 
-  showMessages() {
+  listenToMessages() {
     let messages$;
     if (this.platform.is('cordova')) {
       messages$ = this.firebaseNative.onNotificationOpen();
@@ -62,12 +62,7 @@ export class FcmService {
       messages$ = this.afMessaging.messages;
     }
 
-    return messages$.pipe(
-      tap(payload => {
-        const msg = (payload as any).notification || payload;
-        this.makeToast(msg.body);
-      })
-    );
+    return messages$.pipe(tap(v => this.showMessages(v)));
   }
 
   sub(topic) {
@@ -82,6 +77,18 @@ export class FcmService {
       .httpsCallable('unsubscribeFromTopic')({ topic, token: this.token })
       .pipe(tap(_ => this.makeToast(`unsubscribed from ${topic}`)))
       .subscribe();
+  }
+
+  private showMessages(payload) {
+    console.log(payload);
+    let body;
+    if (this.platform.is('android')) {
+      body = payload.body;
+    } else {
+      body = payload.notification.body;
+    }
+
+    this.makeToast(body);
   }
 
   private getPermissionWeb() {
