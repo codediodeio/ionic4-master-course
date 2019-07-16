@@ -32,10 +32,28 @@
                 <span [class.complete]="todo.status === 'complete'">{{ todo.content }}</span>
             </ion-label>
 
-            <ion-checkbox (click)="toggleStatus(todo)" [checked]="todo.status === 'complete'" color="success"></ion-checkbox>
+
+            <ion-button 
+                *ngIf="todo.status !== 'complete'"
+                (click)="toggleStatus(todo)" 
+                color="light">
+            
+                <ion-icon name="radio-button-off"></ion-icon>
+            
+            </ion-button>
+
+            <ion-button 
+                *ngIf="todo.status === 'complete'"
+                (click)="toggleStatus(todo)" 
+                color="success">
+        
+                <ion-icon name="checkmark"></ion-icon>
+        
+            </ion-button>
 
 
-            <ion-button [href]="'todo/' + todo.id">
+
+            <ion-button [routerLink]="todo.id">
                 <ion-icon name="eye"></ion-icon>
             </ion-button>
 

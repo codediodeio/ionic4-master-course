@@ -28,9 +28,9 @@
                             },
                             {
                                 "glob": "**/*.svg",
-                                "input": "node_modules/@ionic/angular/dist/ionic/svg",
+                                "input": "node_modules/ionicons/dist/ionicons/svg",
                                 "output": "./svg"
-                            }
+                              }
                         ],
                         "styles": [{
                                 "input": "src/theme/variables.scss"

@@ -12,12 +12,12 @@
 <ion-content padding>
     <ion-card>
         <ion-card-header>
-            <ion-card-title>Topic-based Push Notifications</ion-card-title>
+            <ion-card-title>Step 1: Topic-based Push Notifications</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            <p>This page demonstrates topic-based push notifications using Firebase Cloud Messaging (FCM). When the app is opened,
-                it will display the notification in the foreground. When closed, it will send the notification to the native
-                device (or browser via the service worker). First, we need to get permission to send.
+            <p>When the app is opened,
+                FCM will display a push notification in the foreground. When closed, it will send the notification to the native
+                device (or browser via the service worker). First, you must get permission from the device.
             </p>
 
             <p>
@@ -31,7 +31,7 @@
 
     <ion-card>
         <ion-card-header>
-            <ion-card-title>Subscribe to a Topic</ion-card-title>
+            <ion-card-title>Step 2: Subscribe to a Topic</ion-card-title>
         </ion-card-header>
         <ion-card-content>
             <p>Second, subscribe the user to
@@ -45,7 +45,7 @@
 
     <ion-card>
         <ion-card-header>
-            <ion-card-title>Broadcast a Notification</ion-card-title>
+            <ion-card-title>Step 3: Broadcast a Notification</ion-card-title>
         </ion-card-header>
         <ion-card-content>
             <p>Third, we create a new random discount document in Firestore, triggering the notifcation to be broadcast to all
