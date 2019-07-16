@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Platform, Menu } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -14,8 +14,6 @@ import { FcmService } from './services/fcm.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  @ViewChild(Menu)
-  menu: Menu;
 
   constructor(
     private platform: Platform,
@@ -24,7 +22,8 @@ export class AppComponent {
     private auth: AuthService,
     private storage: Storage,
     private router: Router,
-    private fcm: FcmService
+    private fcm: FcmService,
+    private menu: MenuController
   ) {
     this.initializeApp();
   }

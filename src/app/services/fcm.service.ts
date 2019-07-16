@@ -5,7 +5,7 @@ import { ToastController, Platform } from '@ionic/angular';
 import { tap } from 'rxjs/operators';
 
 // Fixing temporary bug in AngularFire
-import * as app from 'firebase';
+import * as app from 'firebase/app';
 import { Firebase } from '@ionic-native/firebase/ngx';
 import { from } from 'rxjs';
 

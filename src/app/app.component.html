@@ -10,32 +10,32 @@
         <!-- List of Text Items -->
         <ion-content>
             <ion-list>
-                <ion-item href="/" (click)="mymenu.close()">
+                <ion-item routerLink="/" (click)="mymenu.close()">
                     <ion-label>Home</ion-label>
                 </ion-item>
-                <ion-item (click)="resetTutorial()">
+                <ion-item routerLink="#" (click)="resetTutorial()">
                     <ion-label>Intro Tutorial</ion-label>
                 </ion-item>
-                <ion-item href="/todo" (click)="closeMenu()">
+                <ion-item routerLink="/todo" (click)="closeMenu()">
                     <ion-label>Todo List</ion-label>
                 </ion-item>
 
-                <ion-item href="/fcm" (click)="closeMenu()">
+                <ion-item routerLink="/fcm" (click)="closeMenu()">
                     <ion-label>Push Notifications FCM</ion-label>
                 </ion-item>
-                <ion-item href="/" disabled>
+                <ion-item routerLink="/" disabled>
                     <ion-label>Camera</ion-label>
                     <ion-chip color="success">
                         <ion-label>Soon</ion-label>
                     </ion-chip>
                 </ion-item>
-                <ion-item href="/" disabled>
+                <ion-item routerLink="/" disabled>
                     <ion-label>Maps</ion-label>
                     <ion-chip color="success">
                         <ion-label>Soon</ion-label>
                     </ion-chip>
                 </ion-item>
-                <ion-item href="/" disabled>
+                <ion-item routerLink="/" disabled>
                     <ion-label>In-app Payments</ion-label>
                     <ion-chip color="success">
                         <ion-label>Soon</ion-label>

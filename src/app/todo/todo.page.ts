@@ -6,7 +6,6 @@ import { AuthService } from '../services/auth.service';
 
 import { ModalController } from '@ionic/angular';
 import { TodoFormComponent } from './todo-form/todo-form.component';
-import { Observable } from 'rx';
 
 @Component({
   selector: 'app-todo',
